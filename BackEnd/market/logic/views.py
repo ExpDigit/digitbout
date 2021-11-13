@@ -7,7 +7,7 @@ from .models import *
 
 
 def home(request):
-    return HttpResponse("Hello world!")
+    return render(request, 'base.html')
 
 
 class Categ(ListView):

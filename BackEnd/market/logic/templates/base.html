@@ -6,11 +6,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Базовая страница{% endblock title %}</title>
-    {% block link %}{% endblock link %}
+    {% block link %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;0,700;1,800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    {% endblock link %}
 </head>
 <body>
+    <header>
+        <div class = "wrap">
+            <div id="header_top">
+                <h1>
+                    М - ФЕРМЕР
+                </h1>
+                <div id="header_prof">
+                    <img src="{% static 'image/header_basket.png' %}" alt="Корзина">
+                    <img src="{% static 'image/header_profile.png' %}" alt="Профиль">
+                </div>
+            </div>
+            <nav>
+                <a href="">Главная</a>
+                <a href="">Новости</a>
+                <a href="">Доставка и оплата</a>
+                <a href="">О компании</a>
+                <a href="">Контакты</a>
+                <a href="">Каталог</a>
+            </nav>
+            <div id="search">
+                <p>Поиск продуктов</p>
+                <input type="search">
+            </div>
+        </div>
+    </header>
     {% block content %}
     {% endblock content %}
+        <footer>
+    <div class = "wrap">
+    <div id="mark">М - фермер</div>
+    <div id="info_list">
+        <ul>
+            <li>
+                <b>Каталог</b>
+
+                </li>
+        </ul>
+        <ul>
+            <li>Новости</li>
+            <li>Доставка и оплата</li>
+        </ul>
+        <ul>
+            <li>Контакты</li>
+            <li>О компании</li>
+        </ul>
+    </div>
+    <div id="connect">
+        <ul id="cnumber">
+            <li>
+                <img src="{% static 'image/ico/call.png' %}">
+            </li>
+            <li>
+                (8362) 45-29-55
+            </li>
+        </ul>
+        <ul id="ico">
+            <li>
+                <img src="{% static 'image/ico/telegram.png' %}">
+            </li>
+            <li>
+                <img src="{% static 'image/ico/inst.png' %}">
+            </li>
+            <li>
+                <img src="{% static 'image/ico/wa.png' %}">
+            </li>
+            <li>
+                <img src="{% static 'image/ico/fb.png' %}">
+            </li>
+        </ul>
+    </div>
+    </div>
+    </footer>
 </body>
 {% block scripts %}{% endblock scripts %}
 </html>

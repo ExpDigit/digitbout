@@ -107,3 +107,19 @@ class Order(models.Model):
 
 
 
+class Stock(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Название акции')
+    text = models.TextField(max_length=1200, verbose_name='Тект новости')
+    published = models.BooleanField(default=False, verbose_name='Статус публикации')
+    publication_date = models.DateTimeField(verbose_name='Дата публикации')
+    creation_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания новости')
+
+    class Meta:
+        verbose_name = 'Акция'
+        verbose_name_plural = 'Акции'
+
+    def __str__(self) -> str:
+        return str(self.pk) + "_" + self.name
+
+
+
