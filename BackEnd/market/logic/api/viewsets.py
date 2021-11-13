@@ -24,10 +24,6 @@ class StockViewSet(viewsets.ModelViewSet):
     now = datetime.datetime.now()
     queryset = Stock.objects.filter(published=False, publication_date__lte=now)
     serializer_class = StockSerializer
-    
-# class BotDataViewSet(viewsets.ModelViewSet):
-#     queryset = BotData.objects.all()
-#     serializer_class = BotDataSerializer
 
 class StockDetail(APIView):
     def get_object(self, pk):
