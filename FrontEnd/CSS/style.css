@@ -361,7 +361,7 @@ body {
 header {
     left: 0;
     top: 0;
-    height: 370px;
+    height: 375px;
     width: 100%;
     color: rgb(255, 255, 255)
 }
@@ -435,9 +435,10 @@ main h3 {
     font-weight: 600;
     font-size: 30px;
     letter-spacing: 2px;
-    margin:0;
-    margin-left: 293px;
-    margin-top: 40px;
+    padding-top: 25px;
+}
+main a {
+    color: rgb(0, 0, 0)
 }
 #catalog ul {
     display: flex;
@@ -445,7 +446,7 @@ main h3 {
     justify-content: space-between;
     height: 490px;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     margin-top: 15px;
 }
 #catalog li {
@@ -476,6 +477,9 @@ main h3 {
 footer {
     background-color: rgb(41,23,61);
     color:rgb(255, 255, 255);
+}
+footer a{
+    color: rgb(255, 255, 255);
 }
 footer .wrap {
     display:flex;
