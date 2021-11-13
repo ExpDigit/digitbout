@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Категории{% endblock title %}
+{% block content %}
+{% for cat in cats %}
+<h1>{{cat.name}}</h1>
+{% endfor %}
+{% endblock content %}
