@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;0,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <title>М-фермер</title>
+</head>
+<body>
+    <div id="wrapout">
+    <header id="short">
+        <div class = "wrapin">
+            <div id="header_top">
+                <h1>
+                    М - ФЕРМЕР
+                </h1>
+                <div id="header_reg">
+                    <ul>
+                        <li id = "regbor">
+                            Регистрация
+                        </li>
+                        <li>
+                            Вход
+                        </li>
+                    </ul>
+                    </div>
+            </div>
+            <nav>
+                <a href="">Главная</a>
+                <a href="">Новости</a>
+                <a href="">Доставка и оплата</a>
+                <a href="">О компании</a>
+                <a href="">Контакты</a>
+                <a href="">Каталог</a>
+            </nav>
+        </div>
+        
+        <div id="header_name">
+            Каталог товаров
+        </div>
+    </header>
+    <main>
+        <div class = "wrapin">
+            
+            <div id="catalog">
+                    <aside>
+                        <p>Фильтр:</p>
+                        <ul>
+                            <form>
+                                <div class="multiselect">
+                                  <div class="selectBox" onclick="showCheckboxes1()">
+                                    <select>
+                                      <option>Год урожая</option>
+                                    </select>
+                                    <div class="overSelect"></div>
+                                  </div>
+                                  <div id="checkboxes1">
+                                    <label for="one">
+                                      <input type="checkbox" id="one" />2021</label>
+                                    <label for="two">
+                                      <input type="checkbox" id="two" />2020</label>
+                                  </div>
+                                  
+                                </div>
+                                <div class="multiselect">
+                                    <div class="selectBox" onclick="showCheckboxes2()">
+                                      <select>
+                                        <option>Тип</option>
+                                      </select>
+                                      <div class="overSelect"></div>
+                                    </div>
+                                    <div id="checkboxes2">
+                                      <label for="one">
+                                        <input type="checkbox" id="one" />Зелень</label>
+                                      <label for="two">
+                                        <input type="checkbox" id="two" />Овощи</label>
+                                      <label for="three">
+                                        <input type="checkbox" id="three" />Орехи</label>
+                                        
+                                      <label for="four">
+                                        <input type="checkbox" id="four" />Фрукты</label>
+                                        
+                                      <label for="five">
+                                        <input type="checkbox" id="five" />Ягода</label>
+                                    </div>
+                                    
+                                  </div>
+                              </form>
+                        </ul>
+                        <input id="asidebutton" type="button" value="Выбрать" >
+                    </aside>
+                <div id="items">
+                <ul>
+                    <li>
+                        <a href=""> <img src="./image/catalog-1.png" alt="Каталог">
+                        
+                            <div class="name">
+                            Яблоки, 1 кг</a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                    <li>
+                        <a href=""><img src="./image/catalog-2.png" alt="Каталог">
+                        <div class="name">
+                            Бананы, 1 кг </a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                    <li>
+                        <a href=""> <img src="./image/catalog-3.png" alt="Каталог">
+                        <div class="name">
+                            Яблоки, 1 кг</a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                    <li>
+                        <a href=""> <img src="./image/catalog-4.png" alt="Каталог">
+                        <div class="name">
+                            Лимоны, 1 кг</a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href=""><img src="./image/catalog-5.png" alt="Каталог">
+                        <div class="name">
+                            Яблоки, 1 кг</a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                    <li>
+                        <a href=""><img src="./image/catalog-6.png" alt="Каталог">
+                        <div class="name">
+                            Лимоны, 1 кг</a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                    <li>
+                        <a href=""><img src="./image/catalog-7.png" alt="Каталог">
+                        <div class="name">
+                            Бананы, 1 кг</a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                    <li>
+                        <a href=""><img src="./image/catalog-8.png" alt="Каталог">
+                        <div class="name">
+                            Апельсины, 1 кг</a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </main>
+    </div>
+    <footer>
+    <div class = "wrapin">
+    <div id="mark">М - фермер</div>
+    <div id="info_list">
+        <ul>
+            <li>
+                <b><a href="">Каталог</a></b>
+
+                </li>
+        </ul>
+        <ul>
+            <li><a href="">Новости</a></li>
+            <li><a href="">Доставка и оплата</a></li>
+        </ul>
+        <ul>
+            <li><a href="">Контакты</a></li>
+            <li><a href="">О компании</a></li>
+        </ul>
+    </div>
+    <div id="connect">
+        <ul id="cnumber">
+            <li>
+                <a href=""><img src="./image/ico/call.png"></a> 
+            </li>
+            <li>
+                (8362) 45-29-55
+            </li>
+        </ul>
+        <ul id="ico">
+            <li>
+                <a href=""> <img src="./image/ico/telegram.png"></a>
+            </li>
+            <li>
+                <a href=""> <img src="./image/ico/inst.png"></a>
+            </li>
+            <li>
+                <a href=""><img src="./image/ico/wa.png"></a>
+            </li>
+            <li>
+                <a href=""> <img src="./image/ico/fb.png"></a>
+            </li>
+        </ul>
+    </div>
+    </div>
+    </footer>
+    <!-- logintypewindow -->
+    <!-- <div id="logintypewindow">
+        <p>Как вы хотите зарегистрироваться ?</p>
+        <ul>
+            <li><input type="button" value="Покупатель"></li>
+            <li><input type="button" value="Фермер"></li>
+            <li><input type="button" value="Перевозчик"> </li>
+        </ul>
+    </div> -->
+
+    <script src="./JS/main.js"></script>
+</body>
+</html>
+
