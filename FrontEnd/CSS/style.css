@@ -30,6 +30,7 @@
   
   main {
     display: block;
+    min-height: 470px;
   }
   
   /**
@@ -418,6 +419,9 @@ h1 {
     padding-left: 10px;
     padding-right: 10px;
 }
+#header_reg a {
+    color:rgb(255, 255, 255);
+}
 #regbor{
     border-right: 1px solid;
 }
@@ -443,7 +447,7 @@ a {
 }
 nav a{
     font-weight: 600;
-    font-size: 30px;
+    font-size: 24px;
     color: rgb(255, 255, 255);
     letter-spacing: 3px;
 }
@@ -492,7 +496,7 @@ main a {
     color: rgb(0, 0, 0)
 }
 #catalog {
-    display: flex;
+    max-width: 1100px;
 }
 #catalog ul {
     display: flex;
@@ -616,7 +620,9 @@ aside {
     width: 600px;
 }
 #items {
-    width: 80%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 aside p {
@@ -686,3 +692,40 @@ select {
   #checkboxes2 label:hover {
     background-color: #1e90ff;
   }
+
+  /* Basket */
+  
+  #basket ul{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+  }
+  #basket li input {
+      
+    padding: 10px 15px;
+    border-radius: 10px;
+    color:rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+  }
+  #basket li {
+      width: 20%;
+  }
+  .basketmenu {
+
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+  }
+  #basket img {
+      border: 1px solid;
+  }
+
+  /* Number */
+  
+.container{
+    width: 10%;
+
+}
+  
+  
+
