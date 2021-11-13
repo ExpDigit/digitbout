@@ -30,6 +30,7 @@
   
   main {
     display: block;
+    min-height: 470px;
   }
   
   /**
@@ -351,27 +352,35 @@ ul {
     
     list-style: none;
 }
-
 body {
+    margin-top: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgb(255, 252, 252);
+}
+#wrapout {
+    max-width: 1440px;
+    margin: auto;
+    background-position: 50% 50%;
+}
+#wrapout header {
+    
     background-image: url(../image/background_1.png);
     background-repeat: no-repeat;
-    background-size: 100%;
-    font-family: 'Open Sans', sans-serif;
+    background-size: cover;
 }
 header {
     left: 0;
     top: 0;
-    height: 370px;
     width: 100%;
     color: rgb(255, 255, 255)
 }
-.wrap {
+.wrapin {
     margin: auto;
-    max-width: 1745px;
+    max-width: 90%;
 }
 
 #header_top {
-    margin-top: 62px;
+    padding-top: 62px;
     display: flex;
 }
 h1 {
@@ -388,64 +397,113 @@ h1 {
 #header_prof img {
     height: 60px;
     margin: 0 15px;
+    cursor: pointer;
 }
+#header_reg {
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: 10px;
+    border: 1px solid;
+    border-radius: 15px;;
+    height: 30px;
+    font-weight: 600;
+    font-size: 24px;
+}
+#header_reg ul {
+    margin:auto;
+    margin-right: 35px;
+}
+#header_reg li {
+    
+    display:inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#header_reg a {
+    color:rgb(255, 255, 255);
+}
+#regbor{
+    border-right: 1px solid;
+}
+
 a {
     text-decoration: none;
 }
+#header_name {
+    width: 93%;
+    background-color:rgb(41,23,61);
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    margin: 0;
+    margin-top: 40px;
+    padding: 20px 50px;
+    font-size: 36px;
+
+}
+#contact_info {
+    font-weight: 600;
+    font-size: 24px;
+    padding: 100px 0px;
+}
 nav a{
     font-weight: 600;
-    font-size: 30px;
+    font-size: 24px;
     color: rgb(255, 255, 255);
     letter-spacing: 3px;
 }
 nav {
-    margin-top: 48px;
-    margin-left: 5px;
+    margin-top: 20px;
+    margin-left: -8px;
     margin-right: 2px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 #search {
     font-weight: 600;
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     justify-content:start;
     flex-direction: column;
 }
 #search p {
-    font-size: 50px;
+    font-size: 40px;
     margin: 0;
     margin-left: 0px;
     height: 40px;
     letter-spacing: 1px;
 }
 #search input {
-    font-size: 45px;
-    margin-top: 25px;
+    font-size: 30px;
+    margin-top: 10px;
     border-radius: 25px;
     height: 65px;
+    width:50%;
+    padding-left: 20px;
 }
 
 main {
     background-color: rgb(255, 252, 252);
     width: 100%;
-    margin-bottom: 100px;
 }
 main h3 {
     font-weight: 600;
     font-size: 30px;
     letter-spacing: 2px;
-    margin:0;
-    margin-left: 293px;
-    margin-top: 40px;
+    padding-top: 25px;
+}
+main a {
+    color: rgb(0, 0, 0)
+}
+#catalog {
+    max-width: 1100px;
 }
 #catalog ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 490px;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     margin-top: 15px;
 }
 #catalog li {
@@ -454,10 +512,14 @@ main h3 {
     margin: 0;
     margin-right: 1%;
     letter-spacing: 2px;
+    border-radius: 6px;
+    box-sizing: border-box;
     
 }
+#catalog li:hover {
+    text-decoration: underline;
+}
 #catalog li img {
-    width: 100%;
     max-height: 85%;
 }
 .name {
@@ -465,6 +527,9 @@ main h3 {
     margin-left: 8px;
     font-weight: 300;
     font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .price {
     margin: 0;
@@ -472,18 +537,24 @@ main h3 {
     margin-top:5px;
     font-weight: 600;
     font-size: 30px;
+    justify-content: space-between;
 }
 footer {
     background-color: rgb(41,23,61);
     color:rgb(255, 255, 255);
+    margin-top: 50px;
 }
-footer .wrap {
+footer a{
+    color: rgb(255, 255, 255);
+}
+footer .wrapin {
     display:flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    height: 150px;
 }
-footer .wrap #mark {
+footer .wrapin #mark {
     margin: 5.5%;
     padding: 10px 15px;
     font-size: 50px;
@@ -509,3 +580,154 @@ footer ul
 #ico {
     width: 50px;
 }
+
+
+/*  login type window*/ 
+#logintypewindow {
+    position: absolute;
+    top: 15%;
+    left: 65%;
+    width: 20%;
+    background-color: rgb(255, 252, 252);
+    z-index:9999;
+    text-align: center;
+    border: 1px solid rgb(41,23,61);
+    border-radius: 10px;
+}
+#logintypewindow p {
+    width: 100;
+    font-weight: 600;
+    font-size: 20px;
+}
+#logintypewindow ul {
+    margin: auto;
+    padding: 0;
+    display: flex;
+    justify-content:space-around;
+    flex-wrap: wrap;
+}
+#logintypewindow li {
+    width: 50%;
+}
+#logintypewindow input{
+    padding: 5px 15px;
+    margin: 10px;
+    width: 80%;
+}
+
+/* Catalog */
+aside {
+    width: 600px;
+}
+#items {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+aside p {
+    font-weight: 600;
+    font-size: 32px;
+}
+
+select {
+    border: none;
+    background: none;
+    
+}
+#asidebutton {
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color:rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+}
+/* Filter */
+
+.multiselect {
+    width: 200px;
+  }
+  
+  .selectBox {
+    position: relative;
+  }
+  
+  .selectBox select {
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  .overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  
+  #checkboxes1 {
+    display: none;
+    border: 1px #dadada solid;
+  }
+  
+  #checkboxes1 label {
+    display: block;
+  }
+  
+  #checkboxes1 label:hover {
+    background-color: #1e90ff;
+  }
+  
+  #checkboxes2 {
+    display: none;
+    border: 1px #dadada solid;
+  }
+  
+  #checkboxes2 label {
+    display: block;
+  }
+  
+  #checkboxes2 label:hover {
+    background-color: #1e90ff;
+  }
+
+  /* Basket */
+  
+  #basket ul{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+  }
+  #basket li input {
+      
+    padding: 10px 15px;
+    border-radius: 10px;
+    color:rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+  }
+  #basket li {
+      width: 20%;
+  }
+  .basketmenu {
+
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+  }
+  #basket img {
+      border: 1px solid;
+  }
+  #basket .sum {
+      font-size: 32px;
+  }
+  /* Number */
+  
+.container{
+    width: 10%;
+
+}
+  
+  
+
