@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Категории{% endblock title %}
+{% block content %}
+    <main>
+        <div class = "wrapin">
+            <div id="catalog">
+            
+            <ul>
+                {% for cat in cats %}
+                <li>
+                    <a href="{{ cat.get_absolute_url }}"> <img src="{{ cat.image.url }}" alt="Каталог">
+                    
+                        <div class="name">
+                        {{ cat.name }}
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

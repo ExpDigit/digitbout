@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import CASCADE, DO_NOTHING
@@ -7,8 +8,9 @@ from django.db.models import CASCADE, DO_NOTHING
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название')
+    slug = models.SlugField(max_length=50, unique=True, verbose_name='Ссылка в браузере')
     description = models.TextField(max_length=1200, verbose_name='Описание категории')
-    image = models.ImageField(upload_to='media/prod_cat/')
+    image = models.ImageField(upload_to='prod_cat/images/', verbose_name="Изображение продукта")
     stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
 
     class Meta:
@@ -19,10 +21,15 @@ class ProductCategory(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def get_absolute_url(self):
+        return reverse_lazy('cat')
 
 
 class Unitsmeasure(models.Model):
     name = models.CharField(max_length=50, verbose_name = 'Название единицы измерения')
+
+    def __str__(self) -> str:
+        return self.name
 
     class Meta:
         verbose_name = 'Единица измерения'
@@ -32,11 +39,11 @@ class Unitsmeasure(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=50, verbose_name = 'Название продукта')
-    slug = models.SlugField(max_length=20, unique=True, verbose_name='Ссылка в браузере')
+    slug = models.SlugField(max_length=50, unique=True, verbose_name='Ссылка в браузере')
     category = models.ForeignKey(ProductCategory, verbose_name='Катогория продукта', on_delete=CASCADE)
-    quantity = models.FloatField(verbose_name='Количество товара на складе')
     um = models.ForeignKey(Unitsmeasure, verbose_name='Единицы измерения', on_delete=DO_NOTHING)
     stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
+    image = models.ImageField(upload_to='products/images/', verbose_name='Изображение продукта')
 
 
     class Meta:
@@ -50,8 +57,11 @@ class Product(models.Model):
 
 
 class Farmer(models.Model):
-    name = models.CharField(max_length=50, verbose_name = 'Рекламное название фермера')
+    name = models.CharField(max_length=50, unique=True, verbose_name = 'Рекламное название фермера')
     profile = models.OneToOneField(User, verbose_name='Профиль фермера', on_delete=CASCADE)
+
+    def __str__(self) -> str:
+        return self.name
     
     class Meta:
         verbose_name = 'Статус фермера'
@@ -61,6 +71,9 @@ class Farmer(models.Model):
 
 class Size(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name = 'Навание размера')
+
+    def __str__(self) -> str:
+        return self.name
     
     class Meta:
         verbose_name = 'Размер продукта'
@@ -69,9 +82,19 @@ class Size(models.Model):
 
 
 class Sort(models.Model):
-    name = models.CharField(max_length=50, unique=True, verbose_name = 'Название единицы измерения')
+    name = models.CharField(max_length=50, unique=True, verbose_name = 'Название сорта')
     product = models.ForeignKey(Product, verbose_name='Продукт', on_delete=CASCADE)
     stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
+    image = models.ImageField(upload_to='products/sort/images/', verbose_name='Изображение сорта продукта', blank=True) 
+
+    def __str__(self) -> str:
+        return self.name
+
+    def get_name(self) -> str:
+        return str(self.product.name) + " " + str(self.name)
+
+    def get_absolute_url(self):
+        return reverse_lazy('sort', args=(self.product.slug, self.pk,))
 
     class Meta:
         verbose_name = 'Сорт продукта'
@@ -81,11 +104,31 @@ class Sort(models.Model):
 
 
 class Properties(models.Model):
-    product_sort = models.ForeignKey(Sort, verbose_name='Продукт-сорт', on_delete=CASCADE)
+    sort = models.ForeignKey(Sort, verbose_name='Сорт продукта', on_delete=CASCADE)
     farmer = models.ForeignKey(Farmer, verbose_name='Производитель', on_delete=CASCADE)
+    quantity = models.FloatField(verbose_name='Количество товара на складе')
     year = models.DateField(blank=True, null=True, verbose_name='Год урожая')
+    size = models.ForeignKey(Size, verbose_name="Размер", on_delete=DO_NOTHING)
+    stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
     price = models.FloatField(verbose_name='Цена за единицу товара')
-    size = models.FloatField(Size)
+
+    def get_name(self) -> str:
+        return str(self.sort.product.name) + " " + str(self.sort.name) + " " + (self.size.name)
+
+    def get_price_clear(self):
+        return self.price * (1 - float(max(self.stock_multipler, self.sort.stock_multipler, self.sort.product.stock_multipler, self.sort.product.category.stock_multipler)) / float(100))
+
+    def get_price(self) -> str:
+        return str(self.get_price_clear(self)) + " руб/" + self.sort.product.um.name
+
+    def get_stock_clear(self):
+        return max(self.stock_multipler, self.sort.stock_multipler, self.sort.product.stock_multipler, self.sort.product.category.stock_multipler)
+
+    def get_stock(self):
+        return str(self.get_stock_clear(self)) + "%"
+
+    def __str__(self) -> str:
+        return self.sort.product.name + "_" + self.sort.name + "_" + self.size.name
 
     class Meta:
         verbose_name = 'Характеристика'

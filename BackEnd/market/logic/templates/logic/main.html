@@ -1,86 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}М-фермер{% endblock title %}
-
 {% block content %}
     <main>
         <div class = "wrap">
             <h3>Выгодные предложения</h3>
             <div id="catalog">
             <ul>
+                {% for sort in sorts %}
                 <li>
-                    <img src="./image/catalog-1.png" alt="Каталог">
+                    <a href="{{ sort.get_absolute_url }}">
+                    {% if sort.image %}
+                    <img src="{{ sort.image.url }}" alt="Каталог">
+                    {% else %}
+                    <img src="{{ sort.product.image.url }}" alt="Каталог">
+                    {% endif %}
                     <div class="name">
-                    Яблоки, 1 кг
+                    {{ sort.get_name }}
                     </div>
                     <div class="price">
-                        60,00 руб
+                        {{ sort.get_price }}
                     </div>
+                    </a>
                 </li>
-                <li>
-                    <img src="./image/catalog-2.png" alt="Каталог">
-                    <div class="name">
-                    Бананы, 1 кг
-                    </div>
-                    <div class="price">
-                        60,00 руб
-                    </div>
-                </li>
-                <li>
-                    <img src="./image/catalog-3.png" alt="Каталог">
-                    <div class="name">
-                    Яблоки, 1 кг
-                    </div>
-                    <div class="price">
-                        60,00 руб
-                    </div>
-                </li>
-                <li>
-                    <img src="./image/catalog-4.png" alt="Каталог">
-                    <div class="name">
-                    Лимоны, 1 кг
-                    </div>
-                    <div class="price">
-                        60,00 руб
-                    </div>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <img src="./image/catalog-5.png" alt="Каталог">
-                    <div class="name">
-                    Яблоки, 1 кг
-                    </div>
-                    <div class="price">
-                        60,00 руб
-                    </div>
-                </li>
-                <li>
-                    <img src="./image/catalog-6.png" alt="Каталог">
-                    <div class="name">
-                    Лимоны, 1 кг
-                    </div>
-                    <div class="price">
-                        60,00 руб
-                    </div>
-                </li>
-                <li>
-                    <img src="./image/catalog-7.png" alt="Каталог">
-                    <div class="name">
-                    Бананы, 1 кг
-                    </div>
-                    <div class="price">
-                        60,00 руб
-                    </div>
-                </li>
-                <li>
-                    <img src="./image/catalog-8.png" alt="Каталог">
-                    <div class="name">
-                    Апельсины, 1 кг
-                    </div>
-                    <div class="price">
-                        60,00 руб
-                    </div>
-                </li>
+                {% endfor %}
             </ul>
             </div>
         </div>
