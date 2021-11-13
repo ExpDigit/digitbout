@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import CASCADE, DO_NOTHING
 
@@ -149,7 +150,7 @@ class Stock(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название акции')
     text = models.TextField(max_length=1200, verbose_name='Тект новости')
     published = models.BooleanField(default=False, verbose_name='Статус публикации')
-    publication_date = models.DateTimeField(verbose_name='Дата публикации')
+    publication_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата публикации')
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания новости')
 
     class Meta:
@@ -163,11 +164,22 @@ class Stock(models.Model):
 
 class Transport(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='Название транспорта')
-    weight = models.CharField(max_length=50, unique=True, verbose_name='Название транспорта')
+    weight = models.IntegerField(verbose_name='Грузоподъемность')
 
     class Meta:
-        verbose_name = 'Акция'
-        verbose_name_plural = 'Акции'
+        verbose_name = 'Транспорт'
+        verbose_name_plural = 'Транспорт'
 
     def __str__(self) -> str:
         return self.name
+
+
+class BotData(models.Model):
+    user_id = models.CharField(max_length=20, unique=True, verbose_name='Идентификатор в телеграмме')
+
+    class Meta:
+        verbose_name = 'Данные бота'
+        verbose_name_plural = 'Данные ботов'
+
+    def __str__(self) -> str:
+        return 'user_' + self.user_id

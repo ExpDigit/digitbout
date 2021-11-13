@@ -1,6 +1,6 @@
 from rest_framework import routers, viewsets
 from django.urls import path, include
-from .viewsets import StockViewSet, UserViewSet, CategoryViewSet, OrderViewSet, StockDetail
+from .viewsets import StockViewSet, UserViewSet, CategoryViewSet, OrderViewSet, StockDetail, BotDataViewSet
 from rest_framework.urlpatterns import format_suffix_patterns
 
 router = routers.DefaultRouter()
@@ -8,6 +8,7 @@ router.register(r'users', UserViewSet)
 router.register(r'cats', CategoryViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'stock', StockViewSet)
+router.register(r'bot', BotDataViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

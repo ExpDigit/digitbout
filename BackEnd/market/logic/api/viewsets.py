@@ -1,9 +1,9 @@
 from django.http.response import Http404, HttpResponse
 from rest_framework import viewsets
 from rest_framework.views import APIView
-from .serializers import CategorySerializer, OrderSerializer, StockEditSerializer, StockSerializer, UserSerializer
+from .serializers import CategorySerializer, OrderSerializer, StockEditSerializer, StockSerializer, UserSerializer, BotDataSerializer
 from django.contrib.auth.models import User
-from ..models import Order, ProductCategory, Stock
+from ..models import BotData, Order, ProductCategory, Stock
 from rest_framework.response import Response
 from rest_framework import status
 import datetime
@@ -24,6 +24,10 @@ class StockViewSet(viewsets.ModelViewSet):
     now = datetime.datetime.now()
     queryset = Stock.objects.filter(published=False, publication_date__lte=now)
     serializer_class = StockSerializer
+    
+class BotDataViewSet(viewsets.ModelViewSet):
+    queryset = BotData.objects.all()
+    serializer_class = BotDataSerializer
 
 class StockDetail(APIView):
     def get_object(self, pk):

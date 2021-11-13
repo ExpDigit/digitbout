@@ -36,3 +36,9 @@ class StockEditSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stock
         fields = ['pk', 'published',]
+
+class BotDataSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = BotData
+        fields = ['user_id',]
