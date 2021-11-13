@@ -26,6 +26,13 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['status',]
 
 class StockSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Stock
-        fields = ['text',]
+        fields = ['pk', 'text', 'published',]
+
+class StockEditSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Stock
+        fields = ['pk', 'published',]

@@ -8,27 +8,11 @@ class ProductCategory(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название')
     description = models.TextField(max_length=1200, verbose_name='Описание категории')
     image = models.ImageField(upload_to='media/prod_cat/')
+    stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
 
     class Meta:
         verbose_name = 'Категория продукта'
         verbose_name_plural = 'Категории продуктов'
-        ordering = ['name',]
-
-    def __str__(self) -> str:
-        return self.name
-
-
-
-class Product(models.Model):
-    name = models.CharField(max_length=50, verbose_name = 'Название продукта')
-    slug = models.SlugField(max_length=20, unique=True, verbose_name='Ссылка в браузере')
-    category = models.ForeignKey(ProductCategory, verbose_name='Катогория продукта', on_delete=CASCADE)
-    quantity = models.FloatField(verbose_name='Количество товара на складе')
-    price = models.FloatField(verbose_name='Цена за единицу товара')
-
-    class Meta:
-        verbose_name = 'Продукт'
-        verbose_name_plural = 'Продукты'
         ordering = ['name',]
 
     def __str__(self) -> str:
@@ -45,13 +29,67 @@ class Unitsmeasure(models.Model):
 
 
 
+class Product(models.Model):
+    name = models.CharField(max_length=50, verbose_name = 'Название продукта')
+    slug = models.SlugField(max_length=20, unique=True, verbose_name='Ссылка в браузере')
+    category = models.ForeignKey(ProductCategory, verbose_name='Катогория продукта', on_delete=CASCADE)
+    quantity = models.FloatField(verbose_name='Количество товара на складе')
+    um = models.ForeignKey(Unitsmeasure, verbose_name='Единицы измерения', on_delete=DO_NOTHING)
+    stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
+
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+        ordering = ['name',]
+
+    def __str__(self) -> str:
+        return self.name
+
+
+
+class Farmer(models.Model):
+    name = models.CharField(max_length=50, verbose_name = 'Рекламное название фермера')
+    profile = models.OneToOneField(User, verbose_name='Профиль фермера', on_delete=CASCADE)
+    
+    class Meta:
+        verbose_name = 'Статус фермера'
+        verbose_name_plural = 'Статус фермеров'
+
+
+
+class Size(models.Model):
+    name = models.CharField(max_length=50, unique=True, verbose_name = 'Навание размера')
+    
+    class Meta:
+        verbose_name = 'Размер продукта'
+        verbose_name_plural = 'Размеры продуктов'
+
+
+
+class Sort(models.Model):
+    name = models.CharField(max_length=50, unique=True, verbose_name = 'Название единицы измерения')
+    product = models.ForeignKey(Product, verbose_name='Продукт', on_delete=CASCADE)
+    stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
+
+    class Meta:
+        verbose_name = 'Сорт продукта'
+        verbose_name_plural = 'Сорты продуктов'
+        unique_together = ("name", "product")
+
+
+
 class Properties(models.Model):
-    um = models.ManyToManyField(Unitsmeasure, verbose_name='Характеристики с фиксированными значениями')
-    year = models.DateField(verbose_name='Год урожая')
+    product_sort = models.ForeignKey(Sort, verbose_name='Продукт-сорт', on_delete=CASCADE)
+    farmer = models.ForeignKey(Farmer, verbose_name='Производитель', on_delete=CASCADE)
+    year = models.DateField(blank=True, null=True, verbose_name='Год урожая')
+    price = models.FloatField(verbose_name='Цена за единицу товара')
+    size = models.FloatField(Size)
 
     class Meta:
         verbose_name = 'Характеристика'
         verbose_name_plural = 'Характеристики'
+
 
 
 
@@ -123,3 +161,13 @@ class Stock(models.Model):
 
 
 
+class Transport(models.Model):
+    name = models.CharField(max_length=50, unique=True, verbose_name='Название транспорта')
+    weight = models.CharField(max_length=50, unique=True, verbose_name='Название транспорта')
+
+    class Meta:
+        verbose_name = 'Акция'
+        verbose_name_plural = 'Акции'
+
+    def __str__(self) -> str:
+        return self.name
