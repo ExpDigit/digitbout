@@ -719,7 +719,9 @@ select {
   #basket img {
       border: 1px solid;
   }
-
+  #basket .sum {
+      font-size: 32px;
+  }
   /* Number */
   
 .container{
