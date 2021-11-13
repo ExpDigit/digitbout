@@ -1,7 +1,7 @@
 from rest_framework import viewsets
-from .serializers import CategorySerializer, UserSerializer
+from .serializers import CategorySerializer, OrderSerializer, UserSerializer
 from django.contrib.auth.models import User
-from ..models import ProductCategory
+from ..models import Order, ProductCategory
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -10,3 +10,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = ProductCategory.objects.all()
     serializer_class = CategorySerializer
+    
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

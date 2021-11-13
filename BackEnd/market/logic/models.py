@@ -73,6 +73,9 @@ class Status(models.Model):
         verbose_name = 'Статус заказа'
         verbose_name_plural = 'Статусы заказа'
 
+    def __str__(self) -> str:
+        return self.name
+
 
 
 class OrderPart(models.Model):
@@ -83,6 +86,9 @@ class OrderPart(models.Model):
     class Meta:
         verbose_name = 'Часть заказа'
         verbose_name_plural = 'Части заказов'
+
+    def __str__(self) -> str:
+        return str(self.pk) + "_" + self.product.name
 
 
 
@@ -95,6 +101,9 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+
+    def __str__(self) -> str:
+        return str(self.pk) + "_" + self.user.username + "_" + self.status.name
 
 
 

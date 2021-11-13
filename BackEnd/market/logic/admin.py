@@ -8,7 +8,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ProductCategory)
+admin.site.register(OrderPart)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Unitsmeasure)
 admin.site.register(Properties)
+admin.site.register(Status)
 admin.site.register(Order)
