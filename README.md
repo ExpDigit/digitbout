@@ -18,3 +18,5 @@
 4. pip install aogram
 5. pip install asyncio
 6. В папке Backend запускаем сервер через файл start
+
+Основной проект лежит на на ветке sherstnev
