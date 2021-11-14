@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import CASCADE, DO_NOTHING
+from django.db import models
+from django.conf import settings
 
 
 
@@ -22,7 +24,7 @@ class ProductCategory(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse_lazy('cat')
+        return reverse_lazy('cat', args=(self.slug,))
 
 
 class Unitsmeasure(models.Model):
@@ -44,6 +46,7 @@ class Product(models.Model):
     um = models.ForeignKey(Unitsmeasure, verbose_name='Единицы измерения', on_delete=DO_NOTHING)
     stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
     image = models.ImageField(upload_to='products/images/', verbose_name='Изображение продукта')
+    description = models.TextField(max_length=1200, verbose_name='Описание категории')
 
 
     class Meta:
@@ -54,11 +57,18 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def get_absolute_url(self):
+        return reverse_lazy("sort", kwargs={"sort_pk": self.pk})
+    
+
 
 
 class Farmer(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name = 'Рекламное название фермера')
     profile = models.OneToOneField(User, verbose_name='Профиль фермера', on_delete=CASCADE)
+    description = models.TextField(max_length=1200, verbose_name='Описание категории')
+    
+    
 
     def __str__(self) -> str:
         return self.name
@@ -94,7 +104,7 @@ class Sort(models.Model):
         return str(self.product.name) + " " + str(self.name)
 
     def get_absolute_url(self):
-        return reverse_lazy('sort', args=(self.product.slug, self.pk,))
+        return reverse_lazy('sort_normal', args=(self.pk,))
 
     class Meta:
         verbose_name = 'Сорт продукта'
@@ -112,10 +122,15 @@ class Properties(models.Model):
     stock_multipler = models.FloatField(default=0, verbose_name='Процент скидки по акции')
     price = models.FloatField(verbose_name='Цена за единицу товара')
 
+
+    def get_absolute_url(self):
+        return reverse_lazy("product", args=(self.sort.product.slug, self.pk))
+    
+
     def get_name(self) -> str:
         return str(self.sort.product.name) + " " + str(self.sort.name) + " " + (self.size.name)
 
-    def get_price_clear(self):
+    def get_price_clear(self, *args, **kwargs):
         return self.price * (1 - float(max(self.stock_multipler, self.sort.stock_multipler, self.sort.product.stock_multipler, self.sort.product.category.stock_multipler)) / float(100))
 
     def get_price(self) -> str:
@@ -226,3 +241,14 @@ class BotData(models.Model):
 
     def __str__(self) -> str:
         return 'user_' + self.user_id
+
+
+SEX = (("M","Мужской"),("W","Женский"))
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)
+    date_of_birth = models.DateField(blank=True, null=True)
+    sex = models.CharField(choices=SEX, default="M", max_length=1, verbose_name="Пол")
+
+    def __str__(self):
+        return 'Профиль пользователя {}'.format(self.user.username)

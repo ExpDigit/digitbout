@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'logic',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL =  '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

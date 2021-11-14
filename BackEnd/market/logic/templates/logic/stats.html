@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <div class = "wrapin">
+            <div id="chp"></div>
+            <div id="gender"></div>
+            <div id="profit"></div>
+        </div>
+    </main>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+    let age = [19, 25, 43, 62, 65, 22, 23, 15, 17];
+        let young = 0;
+        let adult = 0;
+        let elderly = 0;
+        for (i=0; i<age.length; i++)
+        {
+          if (age[i]<18){
+            young +=1;
+          }
+          if (age[i]>=18 && age[i]<64){
+            adult +=1;
+          }
+          if (age[i]>=60){
+            elderly +=1;
+          }
+        }
+        google.load("visualization", "1", {packages:["corechart"]});
+           google.setOnLoadCallback(drawChart);
+           function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+             ['Возрастная группа', 'Возраст'],
+             ['0-18',     young],
+             ['18-60', adult],
+             ['60+',    elderly],
+            ]);
+            var options = {
+             title: 'Возрастные группы',
+             is3D: true,
+             pieResidueSliceLabel: 'Остальное'
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('chp'));
+             chart.draw(data, options);
+           }
+        
+        let gender = ["m", "w", "m", "w", "m", "w", "m", "w", "w", "w"]
+        let male =0;
+        let female = 0;
+        for (i=0; i<gender.length; i++)
+        {
+          if(gender[i]=="m")
+          {
+            male +=1;
+          }
+          if (gender[i]=="w")
+          {
+            female +=1;
+          }
+        }
+        google.load("visualization", "2", {packages:["corechart"]});
+           google.setOnLoadCallback(drawChart2);
+           function drawChart2() {
+            var data2 = google.visualization.arrayToDataTable([
+             ['Возрастная группа', 'Объём'],
+             ['Мужской пол',     male],
+             ['Женский пол', female],
+            ]);
+            var options2 = {
+             title: 'Пол',
+             is3D: true,
+             pieResidueSliceLabel: 'Остальное'
+            };
+            var chart2 = new google.visualization.PieChart(document.getElementById('gender'));
+             chart2.draw(data2, options2);
+           }</script>
+{% endblock content %}

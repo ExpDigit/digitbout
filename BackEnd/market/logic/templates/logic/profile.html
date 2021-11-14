@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<ul>
+    <li>
+        {{ user.first_name }}
+    </li>
+    <li>
+        {{ user.last_name }}
+    </li>
+    <li>
+        {{ profile.date_of_birth }}
+    </li>
+    <li>
+        {% if profile.sex == "M" %}
+        Мужской
+        {% else %}
+        Женский
+        {% endif %}
+    </li>
+    <li>
+        <a href="{% url 'edit' %}">Редактировать профиль </a>
+    </li>
+    <li>
+        <a href="{% url 'stats' %}">Статистика</a>
+    </li>
+</ul>
+{% endblock content %}

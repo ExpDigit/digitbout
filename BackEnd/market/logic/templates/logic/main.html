@@ -7,19 +7,19 @@
             <h3>Выгодные предложения</h3>
             <div id="catalog">
             <ul>
-                {% for sort in sorts %}
+                {% for product in products %}
                 <li>
-                    <a href="{{ sort.get_absolute_url }}">
-                    {% if sort.image %}
-                    <img src="{{ sort.image.url }}" alt="Каталог">
+                    <a href="{{ product.get_absolute_url }}">
+                    {% if product.sort.image %}
+                    <img src="{{ product.sort.image.url }}" alt="Каталог">
                     {% else %}
-                    <img src="{{ sort.product.image.url }}" alt="Каталог">
+                    <img src="{{ product.sort.product.image.url }}" alt="Каталог">
                     {% endif %}
                     <div class="name">
-                    {{ sort.get_name }}
+                    {{ product.get_name }}
                     </div>
                     <div class="price">
-                        {{ sort.get_price }}
+                        {{ product.get_price }}
                     </div>
                     </a>
                 </li>

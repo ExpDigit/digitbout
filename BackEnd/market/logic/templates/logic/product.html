@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <div class = "wrapin">
+            
+            <div id="items">
+            <aside>
+                {% if product.sort.image %}
+                <img src="{{ product.sort.image.url }}">
+                {% else %}
+                <img src="{{ product.sort.product.image.url }}">
+                {% endif %}
+                <div id="seller">
+                    
+                    <div class="name">
+                        {{ product.getname }}</a>
+                        
+                    </div>
+                    <div class="price">
+                        {{ product.get_price }}
+                    </div>
+                    <a href="#"><p>Профиль фермера</p></a>
+                    <input id="itemcount" type="number" placeholder="Кол-во">
+                    <input id="asidebutton" type="button" value="Купить"> 
+                </div>
+            </aside>
+            <div id="catalog">
+                <h3>Описание:</h3>
+                <p>{{ product.sort.product.description }}</p>
+                {% if product.year %}
+                <h3>Год урожая:</h3>
+                <p>{{ product.year }}</p>
+                {% endif %}
+
+                {% if product.size %}
+                <h3>Размер продукта:</h3>
+                <p>{{ product.size.name }}</p>
+                {% endif %}
+            </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <div class = "wrapin">
+            
+            <div id="items">
+            <aside>
+                <p>Фильтр:</p>
+                <ul>
+                    <form>
+                        <div class="multiselect">
+                          <div class="selectBox" onclick="showCheckboxes1()">
+                            <select>
+                              <option>Год урожая</option>
+                            </select>
+                            <div class="overSelect"></div>
+                          </div>
+                          <div id="checkboxes1">
+                            <label for="one">
+                              <input type="checkbox" id="one" />2021</label>
+                            <label for="two">
+                              <input type="checkbox" id="two" />2020</label>
+                          </div>
+                          
+                        </div>
+                        <div class="multiselect">
+                            <div class="selectBox" onclick="showCheckboxes2()">
+                              <select>
+                                <option>Тип</option>
+                              </select>
+                              <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes2">
+                              <label for="one">
+                                <input type="checkbox" id="one" />Зелень</label>
+                              <label for="two">
+                                <input type="checkbox" id="two" />Овощи</label>
+                              <label for="three">
+                                <input type="checkbox" id="three" />Орехи</label>
+                                
+                              <label for="four">
+                                <input type="checkbox" id="four" />Фрукты</label>
+                                
+                              <label for="five">
+                                <input type="checkbox" id="five" />Ягода</label>
+                            </div>
+                            
+                          </div>
+                      </form>
+                </ul>
+                <input id="asidebutton"type="button" value="Выбрать" >
+            </aside>
+            <div id="catalog">
+                    
+                <ul>
+                {% for product in products %}
+                    <li>
+                        <a href=""> <img src="./image/catalog-1.png" alt="Каталог">
+                        
+                            <div class="name">
+                            Яблоки, 1 кг</a>
+                            <a href><img src="./image/addcircle.png"></a>
+                        </div>
+                        <div class="price">
+                            60,00 руб
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

@@ -17,6 +17,39 @@
                     </a>
                 </li>
                 {% endfor %}
+                {% for prod in prods %}
+                <li>
+                    <a href="{{ prod.get_absolute_url }}"> <img src="{{ prod.image.url }}" alt="Каталог">
+                    
+                        <div class="name">
+                        {{ prod.name }}
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+                {% for sort in sorts %}
+                <li>
+                    <a href="{{ sort.get_absolute_url }}"> <img src="{{ sort.image.url }}" alt="Каталог">
+                    
+                        <div class="name">
+                        {{ sort.name }}
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+                {% for sort in normal_sorts %}
+                <li>
+                    <a href="{{ sort.get_absolute_url }}"> <img src="{{ sort.sort.image.url }}" alt="Каталог">
+                    
+                        <div class="name">
+                        {{ sort.get_name }}
+                        </div>
+                        <div class="name">
+                            {{ sort.get_price }}
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
             </ul>
             </div>
         </div>
